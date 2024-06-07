@@ -1,25 +1,33 @@
-package vu.question5;
-
 import java.util.Scanner;
 
-public class NumberOperations {
+public class InvestmentWhileLoop {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter the first number: ");
-            int num1 = scanner.nextInt();
+            System.out.print("Enter the number of members: ");
+            int members = scanner.nextInt();
             
-            System.out.print("Enter the second number: ");
-            int num2 = scanner.nextInt();
+            double[] principalAmounts = new double[members];
+            double[] futureValues = new double[members];
             
-            System.out.print("Enter the third number: ");
-            int num3 = scanner.nextInt();
+            int i = 0;
+            while (i < members) {
+                System.out.print("Enter the principal amount for member " + (i + 1) + ": ");
+                principalAmounts[i] = scanner.nextDouble();
+                i++;
+            }
             
-            int product = num1 * num2 * num3;
-            int sum = num1 + num2 + num3;
-            int max = Math.max(num1, Math.max(num2, num3));
+            System.out.print("Enter the annual interest rate (in decimal, e.g., 0.05 for 5%): ");
+            double rate = scanner.nextDouble();
             
-            System.out.printf("%-10s %-10s %-10s%n", "Product", "Sum", "Maximum");
-            System.out.printf("%-10d %-10d %-10d%n", product, sum, max);
+            System.out.print("Enter the time period in years: ");
+            int time = scanner.nextInt();
+            
+            i = 0;
+            while (i < members) {
+                futureValues[i] = principalAmounts[i] * Math.pow((1 + rate), time);
+                System.out.println("Future value for member " + (i + 1) + ": " + futureValues[i]);
+                i++;
+            }
         }
     }
 }
